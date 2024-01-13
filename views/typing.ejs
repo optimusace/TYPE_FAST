@@ -29,9 +29,61 @@
                 </div>
             </div>
             
-            <p class="paragraph-box"><%= data %></p>
-            <p class="typing-box">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae numquam dignissimos labore nulla odio animi laboriosam veniam quas quasi consectetur inventore iste, iusto ratione sint temporibus tenetur minus et explicabo.</p>
+            <p class="paragraph-box" id="paragraph-box"><%= data %></p>
+            <p class="typing-box" id="typing-box"></p>
         </div>
     </div>
 </body>
+<script>
+
+    //STATS 
+    const accuracyValue = document.getElementById("accuracy-value")
+    const wpmValue = document.getElementById("wpm-vlaue")
+    const timeValue = document.getElementById("time-value")
+    const errorsValue = document.getElementById("errors-value")
+
+    const typingBox = document.getElementById("typing-box")
+    const paragraphBox = document.getElementById("paragraph-box")
+
+    //HANDLE DIFFERENT KEYS FOR KEYDOWN EVENT
+    let typedletters = ""
+    document.addEventListener("keydown",(e)=>{
+        if(e.key === "Shift"){
+            return 
+        }
+        if(e.key === "CapsLock"){
+            // preventing default behaviour can also be done with shift, capslock, control, meta ....
+            //e.preventDefault()  
+            return 
+        }
+        if(e.key === "Tab"){
+            e.preventDefault()  //prevent default behaviour for tab key. 
+            return
+        }
+        if(e.key === "Alt"){
+            e.preventDefault() //prevent default behaviour for alt key
+            return 
+        }
+        if(e.key === "Meta"){       //windows key
+            return
+        }
+        if(e.key === "Control"){
+            return
+        }
+        if(e.key === "Backspace"){
+            typedletters = typedletters.slice(0,-1)
+            typingBox.textContent = typedletters
+            return
+        }
+        if(e.key === "Enter"){
+            typedletters += "\n"
+            typingBox.textContent = typedletters
+            return
+        }
+        typedletters+= e.key 
+        typingBox.textContent = typedletters
+
+    })
+
+</script>
 </html>

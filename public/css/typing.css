@@ -46,10 +46,7 @@ body{
     border: 1px solid black;
     border-radius: 10px;
     padding: 0px 10px 0px 10px;
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%)
+    margin: 0px auto;
 }
 .paragraph-box{
     font-family: var(--font-family1);
@@ -59,4 +56,8 @@ body{
 }
 .typing-box{
     font-size: 20px;
+    width:100%;
+    word-wrap: break-word;
+    min-height: 100px;
+    white-space:pre-line;
 }
