@@ -71,17 +71,39 @@
             return
         }
         if(e.key === "Backspace"){
-            typedletters = typedletters.slice(0,-1)
+            /* typedletters = typedletters.slice(0,-1)
             typingBox.textContent = typedletters
+            return */
+            typedletters = typedletters.slice(0,-1)
+            typingBox.lastElementChild.remove()
             return
         }
         if(e.key === "Enter"){
-            typedletters += "\n"
+            /* typedletters += "\n"
             typingBox.textContent = typedletters
-            return
+            return */
+            typedletters += "\n"
+            const span = document.createElement("span")
+            span.textContent = "\n"
+            typingBox.append(span)
+            return 
         }
         typedletters+= e.key 
-        typingBox.textContent = typedletters
+        const index = typedletters.length - 1
+        if(typedletters[index] === paragraphBox.textContent[index]){
+            const span = document.createElement("span")
+            span.classList.add("letter-correct")
+            span.textContent = e.key
+            typingBox.append(span)
+            console.log("Same key pressed")
+        }else{
+            const span = document.createElement("span")
+            span.classList.add("letter-incorrect")
+            span.textContent = e.key
+            typingBox.append(span)
+            console.log("different key pressed")
+        }
+        //typingBox.textContent = typedletters
 
     })
 
